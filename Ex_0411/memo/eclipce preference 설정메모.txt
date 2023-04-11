@@ -1,0 +1,11 @@
+window preferences
+
+general -> workspace  텍스트파일 인코딩 UTF-8
+Web Browser -> chrome
+
+Server -> Runtime Environments
+
+add ->apache tomcat 8.5 -> next 누른다음 파일 경로를 자기 톰캣 있는 곳으로 설정
+finish
+
+web -> CSS, HTML, jsp 파일 전부 인코딩 UTF-8로 설정 
