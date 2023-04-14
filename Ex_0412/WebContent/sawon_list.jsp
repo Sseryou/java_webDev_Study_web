@@ -40,12 +40,12 @@
    
    System.out.println("---DB접속 성공!!---");
    
- //sawon_list.jsp?deptno=10
+ 	//sawon_list.jsp?deptno=10
   	//deptno라는 이름의 파라미터 값을 수신
   	int no = Integer.parseInt(request.getParameter("deptno"));
    
    //쿼리문 저장
-   String sql = "SELECT * FROM SAWON WHERE SABUN="+no;
+   String sql = "SELECT * FROM SAWON WHERE DEPTNO="+no;
   
    //접속 후, 쿼리문 실행
    //PreparedStatement : 문자열을 쿼리문으로 전환해준다.
@@ -85,6 +85,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<table border="1">
+		<tr>
+			<th>사원번호</th>
+			<th>사원이름</th>
+			<th>부서번호</th>
+			<th>급여</th>
+		</tr>
+		<% for(int i = 0; i < Sawon_list.size(); i++){
+			SawonVO vo = Sawon_list.get(i);%>
+			<tr>
+				<td><%= vo.getSabun() %></td>
+				<td><%= vo.getSaname() %></td>
+				<td><%= vo.getDeptno() %></td>
+				<td><%= vo.getSapay() %></td>
+			
+			</tr>
+			
+			
+			
+			
+		<%} %>
+		
+	</table>
 </body>
 </html>

@@ -53,7 +53,7 @@
  	//부서목록을 저장할 ArrayList만들기
  	List<DeptVO> dept_list = new ArrayList<>();
     
-  //rs.next() = 반환형 bool 
+  //rs.next() = 반환형 boolean 
   	while(rs.next()){//rs.next() : 다음행이 있으면 true, 없으면 false
   		DeptVO vo = new DeptVO();
   		//컬럼 이름을 적어준다.

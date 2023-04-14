@@ -1,0 +1,24 @@
+
+static으로 만들어진 메서드는 새 객체를 만들지 않아도 호출이 된다.
+
+
+static DBService single = null;
+
+	public static DBService getInstance() {
+		//생성되지 않았으면 생성
+		//생성되는 순간, single에는 DBService 객체가 포함되게 된다.
+		if (single == null)
+			single = new DBService();
+		//생성된 객체정보를 반환
+		return single;
+	}
+
+
+
+사원테이블 조회하기
+
+1. vo (변수, getter/setter)
+
+2. dao (싱글톤, 조회(_select), sql문장 및 while문 처리)
+3. jsp (dao의 결과값 가져온 후 body에 출력하기)
+

@@ -1,0 +1,20 @@
+Window
+-> Java
+-> Editor
+-> Templates
+
+import 누르고
+선생님이 주신 파일중 템플릿 누르기
+
+새로 만들기
+
+new 누르기
+name에 템플릿 이름
+설명에 설명
+
+패턴
+for(int i = 0; i < ${argType}; i++){
+	for(int j = 0; j < ${argType}; j++){
+		}
+}
+
