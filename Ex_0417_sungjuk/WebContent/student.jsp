@@ -21,10 +21,14 @@
 		if(confirm("정말 삭제하시겠습니까?") == false){
 			return;
 		}
-		location.href='sung_del.jsp?no='+no;
-		
-		
+		location.href='sung_del.jsp?no='+no;		
+	} //del
+	
+	function modify(no,name,kor,eng,mat){
+		location.href='sung_update.jsp?no='+no+"&name="+name+"&kor="+kor+"&eng="+eng+"&mat="+mat;
 	}
+	
+	
 	
 </script>
 
@@ -55,7 +59,12 @@
 				<td><%= vo.getTot() %></td>
 				<td><%= vo.getAvg() %></td>
 				<td><%= vo.getRank() %></td>
-				<td><input type="button" value="삭제" onclick="del('<%=vo.getNo()%>')"></td>	
+				<td><input type="button" value="삭제" onclick="del('<%=vo.getNo()%>')"></td>
+				<td><input type="button" value="수정" onclick="modify('<%= vo.getNo()%>',
+																	 '<%= vo.getName()%>',
+																	 '<%= vo.getKor()%>',
+																	  '<%= vo.getEng()%>',
+																	   '<%= vo.getMat()%>')"></td>	
 			</tr>
 			<% } %>	
 			<tr>

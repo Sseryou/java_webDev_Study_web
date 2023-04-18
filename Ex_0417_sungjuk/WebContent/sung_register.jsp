@@ -46,8 +46,7 @@
 
 </head>
 <body>
-	<form>
-	
+	<form>	
 	<table border="1">
 		<caption>학생 정보를 입력하세요.</caption>
 		<tr>

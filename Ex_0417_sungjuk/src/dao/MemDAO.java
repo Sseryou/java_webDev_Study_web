@@ -8,30 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import service.DBService;
-
+import vo.MemVO;
 import vo.SjVO;
 
-public class SjDAO {
+public class MemDAO {
+	
 	// single-ton pattern: 
 	// 객체1개만생성해서 지속적으로 서비스하자
-	static SjDAO single = null;
+	static MemDAO single = null;
 
-	public static SjDAO getInstance() {
+	public static MemDAO getInstance() {
 		//생성되지 않았으면 생성
 		if (single == null)
-			single = new SjDAO();
+			single = new MemDAO();
 		//생성된 객체정보를 반환
 		return single;
 	}
 	
-	
-	public List<SjVO> selectList() {
+	public List<MemVO> selectList() {
 
-		List<SjVO> list = new ArrayList<SjVO>();
+		List<MemVO> list = new ArrayList<MemVO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM sungtb_view";
+		String sql = "SELECT * FROM MEMBER";
 
 		try {
 			//1.Connection얻어온다
@@ -43,16 +43,14 @@ public class SjDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				SjVO vo = new SjVO();
+				MemVO vo = new MemVO();
 				
-					vo.setNo(rs.getInt("NO"));
+					vo.setIdx(rs.getInt("IDX"));
 					vo.setName(rs.getString("NAME"));
-					vo.setKor(rs.getInt("KOR"));
-					vo.setEng(rs.getInt("ENG"));
-					vo.setMat(rs.getInt("MAT"));
-					vo.setTot(rs.getInt("tot"));
-					vo.setAvg(rs.getFloat("avg"));
-					vo.setRank(rs.getInt("rank"));
+					vo.setId(rs.getString("ID"));
+					vo.setPw(rs.getString("PW"));
+					vo.setEmail(rs.getString("EMAIL"));
+					
 					
 				list.add(vo);
 			}
@@ -78,14 +76,14 @@ public class SjDAO {
 		return list;
 	}
 	
-	public int insert(SjVO vo) {
+	public int insert(MemVO vo) {
 		// TODO Auto-generated method stub
 		int res = 0;
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "INSERT INTO SUNGTB VALUES(SEQ_SUNGTB_NO.NEXTVAL, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMBER VALUES(SEQ_MEMBER_IDX.NEXTVAL, ?, ?, ?, ?)";
 
 		try {
 			//1.Connection획득
@@ -97,9 +95,9 @@ public class SjDAO {
 			// 매개변수 : 몇 번째의 ? 인지, 어떤 파라미터 값을 넣을 것인지
 			//pstmt.setString(1, vo.getName()); 
 			pstmt.setString(1, vo.getName());
-			pstmt.setInt(2, vo.getKor());
-			pstmt.setInt(3, vo.getEng());
-			pstmt.setInt(4, vo.getMat());
+			pstmt.setString(2, vo.getId());
+			pstmt.setString(3, vo.getPw());
+			pstmt.setString(4, vo.getEmail());
 
 			//4.DB로 전송(res:처리된행수)
 			res = pstmt.executeUpdate();
@@ -123,14 +121,14 @@ public class SjDAO {
 	}
 	
 	
-	public int delete(int no) {
+	public int delete(int idx) {
 		// TODO Auto-generated method stub
 		int res = 0;
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "DELETE FROM SUNGTB WHERE NO=?";
+		String sql = "DELETE FROM MEMBER WHERE IDX=?";
 
 		try {
 			//1.Connection획득
@@ -138,7 +136,7 @@ public class SjDAO {
 			//2.명령처리객체 획득
 			pstmt = conn.prepareStatement(sql);
 			//3.pstmt parameter 채우기
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, idx);
 			//4.DB로 전송(res:처리된행수)
 			res = pstmt.executeUpdate();
 
@@ -160,15 +158,15 @@ public class SjDAO {
 		return res;
 	}
 	
-	//수정하기
-	public int update(SjVO vo) {
+	
+	public int update(MemVO vo) {
 		// TODO Auto-generated method stub
 		int res = 0;
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "UPDATE SUNGTB SET NAME=?,KOR=?,ENG=?,MAT=? WHERE NO=?";
+		String sql = "UPDATE MEMBER SET NAME=?,ID=?,PW=?,EMAIL=? WHERE IDX=?";
 
 		try {
 			//1.Connection획득
@@ -178,10 +176,10 @@ public class SjDAO {
 
 			//3.pstmt parameter 채우기
 			pstmt.setString(1, vo.getName());
-			pstmt.setInt(2, vo.getKor());
-			pstmt.setInt(3, vo.getEng());
-			pstmt.setInt(4, vo.getMat());
-			pstmt.setInt(5, vo.getNo());
+			pstmt.setString(2, vo.getId());
+			pstmt.setString(3, vo.getPw());
+			pstmt.setString(4, vo.getEmail());
+			pstmt.setInt(5, vo.getIdx());
 
 			//4.DB로 전송(res:처리된행수)
 			res = pstmt.executeUpdate();
@@ -203,6 +201,9 @@ public class SjDAO {
 		}
 		return res;
 	}
+	
+	
+	
 	
 
 }
