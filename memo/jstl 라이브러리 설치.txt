@@ -1,0 +1,7 @@
+jstl 라이브러리 경로
+D:\web1500_sms\jsp\util\apache-tomcat-8.5.87\webapps\examples\WEB-INF\lib
+
+
+
+톰캣 자체 라이브러리에 jstl 라이브러리를 넣는 방법도 있음.
+

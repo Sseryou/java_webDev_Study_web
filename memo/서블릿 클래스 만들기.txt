@@ -1,0 +1,7 @@
+서블릿 클래스 생성법
+action 패키지 만들고
+내부에서 new -> Servlet
+클래스 이름을 ~Action으로 짓고 next
+URL mappings에서 매핑할 함수 정한 후 (ex : upload.do ...) next
+service 체크하고 finish
+

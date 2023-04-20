@@ -1,0 +1,8 @@
+http://servlets.com/cos/
+
+cos File Upload Library 누르기
+
+cos-22.05.zip 다운로드
+
+cos-22.05 내부 lib 내부의 cos.jar를 프로젝스 WEB-INF 내부의 lib에 넣는다.
+
