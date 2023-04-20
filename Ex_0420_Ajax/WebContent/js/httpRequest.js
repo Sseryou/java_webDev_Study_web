@@ -45,6 +45,7 @@ function sendRequest(url, param, callBack, method){
 	//작업이 완료된 후 호출될 콜백메서드 지정
 	xhr.onreadystatechange = callBack;
 	
+	//send() : 데이터 교환을 요청하는 함수.
 	xhr.send(httpMethod == 'POST'?httpParam:null);
 }
 
