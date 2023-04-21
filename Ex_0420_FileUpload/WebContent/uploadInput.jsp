@@ -20,6 +20,7 @@
 				}
 				//jsp에서는 java클래스를 호출할 수 없다.
 				//대신 Servlet을 호출할 수 있다.
+				//URL 매핑
 				f.action = "upload.do";
 				f.submit();
 				
