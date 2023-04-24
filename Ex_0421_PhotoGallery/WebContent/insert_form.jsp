@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+
 	function send(f){
 		var title = f.title.value.trim();
 		var pwd = f.pwd.value.trim();
