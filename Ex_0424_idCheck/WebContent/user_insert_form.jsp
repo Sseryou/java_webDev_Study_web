@@ -5,11 +5,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<script src="js/httpRequest.js"></script>
 		<script type="text/javascript">
+		var b_idCheck = false;
 		function send(f){
 			
 			//아이디 중복체크 여부
-			var b_idCheck = false;
+			
 			if(!b_idCheck){
 				alert("아이디 중복체크를 하세요.")
 				return;
@@ -21,9 +23,9 @@
 			f.submit();
 			
 		}	
-		
+		//아이디 중복체크
 		function check_id(){
-			var id = documetn.getElementById("id").value.trim();
+			var id = document.getElementById("id").value.trim();
 			
 			if(id == ''){
 				alert("아이디를  입력하세요");
@@ -34,13 +36,27 @@
 			
 			//id에 @와 같은 특수문자가 들어가 있는 경우를 대비하여 인코딩하여 보낸다.
 			var param = "id="+encodeURIComponent(id);
-			
 			sendRequest(url,param,resultFn,"POST");
 		}
 		function resultFn(){
 			if(xhr.readyState == 4 && xhr.status == 200){
+				//"[{'res':'%s'}]"
+				var data = xhr.responseText;
 				
+				var json = eval(data);
+				
+				if(json[0].res == 'no'){
+					alert("이미 사용중인 id입니다.");
+					return;
+				}else{
+					alert("사용 가능한 아이디 입니다.");
+					b_idCheck = true;
+					return;
+				}
 			}
+		}
+		function che(){
+			b_idCheck = false;
 		}
 		
 		
@@ -53,7 +69,8 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="id" id="id">
+					<!-- onchange : input태그의 포커스가 벗어났을 때(즉, 입력이 끝났을때) 이벤트 발생 -->
+						<input type="text" name="id" id="id" onchange="che()">
 						<input type="button" value="중복체크" onclick="check_id()">
 					</td>
 				</tr>
