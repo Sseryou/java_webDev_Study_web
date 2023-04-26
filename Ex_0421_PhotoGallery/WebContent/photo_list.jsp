@@ -12,7 +12,14 @@
 		<script type="text/javascript">
 			function del(f){
 				var idx = f.idx.value;
+				var pwd = f.pwd.value;
+				var pwd2 = f.pwd2.value;
 				alert(idx);
+				
+				if(pwd != pwd2){
+					alert("비밀번호가 일치하지 않습니다.");
+					return;
+				}
 				
 				if(!comfirm("삭제하시겠습니까?")){
 					return;
@@ -40,7 +47,11 @@
 					
 					location.href="list.do";
 				}
-			}			
+			}
+			function download(fn){
+				location.href="download.do?dir=/upload/&filename="+fn;
+			}
+			
 		</script>
 		
 	</head>
@@ -67,8 +78,11 @@
 					
 					<form>
 					<input type="hidden" name="idx" value="${vo.idx}">
+					<input type="hidden" name="pwd" value="${vo.pwd}">
 					<input type="hidden" name="filename" value="${vo.filename}">
-					<div>
+					<div align="center">
+						<input type="password" name="pwd2" size="5">
+						<input type="button" value="down" onclick="download('${vo.filename}')">
 						<input type="button" value="삭제" onclick="del(this.form)">
 					</div>
 					</form>
