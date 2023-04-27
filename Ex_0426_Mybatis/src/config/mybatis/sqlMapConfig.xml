@@ -6,13 +6,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<environments default="">
 		<environment id="">
 			<transactionManager type="JDBC" />
+			<!-- Mybatis가 JNDI를 찾아주는 코드-->
 			<dataSource type="JNDI">
 				<property name="data_source" 
-				value="java:comp/env/jdbc/test2" />
+				value="java:comp/env/jdbc/oracle_test" />
 			</dataSource>
 		</environment>
 	</environments>
+	<!--mapper와 설정파일의 mapper의 갯수는 동일해야 한다.-->
+	<!-- 새 조회를 할 경우 매퍼를 추가해야 한다.-->
 	<mappers>
-		<mapper resource="config/mybatis/mapper/sawon.xml" />
+		<mapper resource="config/mybatis/mapper/dept.xml" />
+		<mapper resource="config/mybatis/mapper/sawon.xml"/>
+		<mapper resource="config/mybatis/mapper/gogek.xml"/>
 	</mappers>
 </configuration>
