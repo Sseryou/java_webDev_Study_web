@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT * FROM GOGEK
 </select>
 
+<!--파라미터타입에는 java.lang을 붙여야하지만 스트링은 생략가능-->
+<!--db에서 명령어를 연결시킬때는 || .... -->
+<select id="gogek_select" resultType="vo.GogekVO" parameterType="String">
+	SELECT * FROM GOGEK WHERE GOADDR LIKE '%'||#{goaddr}||'%'
+</select>
+
  
   
 

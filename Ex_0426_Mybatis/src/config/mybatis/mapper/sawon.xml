@@ -10,6 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT * FROM SAWON
 </select>
 
+<!--파라미터를 던졌다면, 파라미터를 받아올 때는 타입을 명시해야 한다.-->
+<!--받을 때는 #{ } 형태로 받는다! 그리고 마음대로 쓸수 있지만, 파라미터를 2개이상 받아올 때는 컬럼명이랑 일치시켜야한다. 그냥 일치시키자.-->
+<select id="sawon_list_no" resultType="vo.SawonVO" parameterType="int">
+	SELECT * FROM SAWON WHERE DEPTNO = #{deptno}
+</select>
  
   
 

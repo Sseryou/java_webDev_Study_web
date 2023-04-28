@@ -7,9 +7,20 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<script type="text/javascript">
+			function search(){
+				var search = document.getElementById("search").value.trim();
+				location.href="gogek_list.do?search="+search;
+			}
+		</script>
 	</head>
 	<body>
-		<table border="1">
+		<div align="center">
+			지역 :
+			<input id="search" placeholder="검색어를 입력하세요.">
+			<input type="button" value="검색" onclick="search()">
+		</div>
+		<table border="1" align="center">
 			<caption>:::고객목록:::</caption>
 			<tr>
 				<th>고객번호</th>
