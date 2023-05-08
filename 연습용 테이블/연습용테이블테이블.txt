@@ -63,3 +63,23 @@ INSERT INTO BOARD VALUES(
 );
 
 COMMIT;
+
+select * from board order by ref desc, step asc;
+
+
+			idx	ref(참조글)	step(보여지는 순서)	depth(대댓글인가?)
+1. 안녕하세요		1	1		0			0
+	ㄴ8.hi		8	1		1			1
+		ㄴ10.hi2	10	1		2			2
+		ㄴ9.bye	9	1		3			2
+	ㄴ4.댓글		4	1		4			1		
+2. 반갑습니다		2	2		0			0
+	ㄴ5.댓글2		5	2		1			1
+		ㄴ6.대댓	6	2		2			2
+3. 웹개발			3	3		0			0
+	ㄴ7.댓		7	3		1			1
+
+--페이징 처리를 위한 쿼리문
+select * from (select rank() over(order by ref desc, step) no, b.* from board b) where no between 1 and 10;
+
+
